@@ -27,6 +27,17 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
+        /* Cabecera del reporte (Ahora siempre visible al inicio) */
+        .report-header {
+            font-weight: bold;
+            font-size: 16px;
+            line-height: 1.4;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #eef2f5;
+            padding-bottom: 15px;
+        }
+
         /* Buscador */
         .search-section {
             background-color: #eef2f5;
@@ -51,9 +62,8 @@
             font-size: 15px;
         }
 
-        .search-btn {
+        .search-btn, .clear-btn {
             padding: 10px 20px;
-            background-color: #0056b3;
             color: white;
             border: none;
             border-radius: 4px;
@@ -64,26 +74,11 @@
             transition: background-color 0.2s;
         }
 
-        .search-btn:hover {
-            background-color: #004494;
-        }
-
-        .clear-btn {
-            padding: 10px 20px;
-            background-color: #6c757d;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: bold;
-            margin-left: 10px;
-            transition: background-color 0.2s;
-        }
-
-        .clear-btn:hover {
-            background-color: #5a6268;
-        }
+        .search-btn { background-color: #0056b3; }
+        .search-btn:hover { background-color: #004494; }
+        
+        .clear-btn { background-color: #6c757d; }
+        .clear-btn:hover { background-color: #5a6268; }
 
         .error-message {
             color: #d32f2f;
@@ -92,155 +87,160 @@
             display: none;
         }
 
-        /* Cabecera del reporte */
-        .report-header {
-            font-weight: bold;
-            font-size: 16px;
-            line-height: 1.4;
-            margin-bottom: 30px;
-        }
-
-        /* Estilos tipo tabla/grid de la imagen */
+        /* CONFIGURACIÓN DE 390px */
         .grid-info {
             display: grid;
-            grid-template-columns: 130px 1fr;
-            margin-bottom: 25px;
+            grid-template-columns: 130px 260px;
+            margin: 0 auto 25px auto;
+            width: 390px;
+        }
+
+        .grid-notas {
+            display: grid;
+            grid-template-columns: 130px 80px 80px 100px;
+            margin: 0 auto 25px auto;
+            width: 390px;
+        }
+
+        .grid-definitiva {
+            display: grid;
+            grid-template-columns: 290px 100px;
+            align-items: center;
+            margin: 20px auto 0 auto;
+            width: 390px;
         }
 
         .label {
             font-weight: bold;
             padding: 6px 0;
             font-size: 16px;
+            text-align: left;
         }
 
         .value-cell {
             border: 1px solid #000;
             padding: 6px 8px;
-            margin-top: -1px; /* Para colapsar los bordes como en Excel */
+            margin-top: -1px;
             font-size: 16px;
-        }
-
-        /* Notas grid */
-        .grid-notas {
-            display: grid;
-            grid-template-columns: 130px 80px 100px;
-            margin-bottom: 25px;
         }
 
         .nota-cell {
             border: 1px solid #000;
             padding: 6px 8px;
-            text-align: center;
             margin-top: -1px;
             margin-left: -1px;
             font-size: 16px;
         }
 
-        .header-cell {
+        .text-center { text-align: center; }
+        .text-left { text-align: left; font-weight: bold; }
+        
+        .text-perdido {
+            color: #d32f2f;
             font-weight: bold;
         }
 
-        .porcentaje-cell {
-            background-color: #e0e0e0; /* Fondo gris para los porcentajes */
+        .text-excelente {
+            color: #2e7d32;
+            font-weight: bold;
         }
 
-        /* Nota Definitiva */
-        .grid-definitiva {
-            display: grid;
-            grid-template-columns: 130px 180px;
-            align-items: center;
-            margin-top: 20px;
+        .header-bg {
+            background-color: #888888;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .porcentaje-cell {
+            background-color: #e0e0e0;
         }
 
         .definitiva-value {
-            border: 2px solid #2e7d32; /* Borde verde característico */
+            border: 1px solid #000;
             padding: 6px 8px;
             text-align: center;
-            font-weight: normal;
+            font-weight: bold;
             font-size: 16px;
         }
 
         #resultado-notas {
-            display: none; /* Oculto por defecto hasta que se busque */
+            display: none;
         }
 
-        /* Responsivo para móviles */
         @media (max-width: 500px) {
             body { padding: 10px; }
             .container { padding: 15px; }
-            .search-input { width: 100%; margin-bottom: 10px; }
-            .search-btn, .clear-btn { margin-left: 0; width: 100%; margin-bottom: 10px;}
+            .grid-info, .grid-notas, .grid-definitiva { width: 100%; }
             .grid-info { grid-template-columns: 90px 1fr; }
-            .grid-notas { grid-template-columns: 85px minmax(50px, 1fr) minmax(85px, 1fr); }
-            .grid-definitiva { grid-template-columns: 90px 1fr; }
-            .label, .value-cell, .nota-cell, .definitiva-value { font-size: 13px; padding: 6px 4px; }
-            .report-header { font-size: 14px; margin-bottom: 20px; }
+            .grid-notas { grid-template-columns: 90px 1fr 1fr 1.2fr; }
+            .grid-definitiva { grid-template-columns: 1fr 90px; }
+            .label, .value-cell, .nota-cell, .definitiva-value { font-size: 13px; }
+            .search-input { width: 100%; margin-bottom: 10px; }
+            .search-btn, .clear-btn { margin-left: 0; width: 100%; margin-bottom: 10px; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    
-    <!-- Zona de Búsqueda -->
-    <div class="search-section">
-        <h3>Consulta de Notas - Estudiantes</h3>
-        <input type="number" id="inputIdentificacion" class="search-input" placeholder="Ingresa cualquier cédula" onkeypress="verificarEnter(event)">
-        <button class="search-btn" onclick="buscarEstudiante()">Consultar</button>
-        <button class="clear-btn" onclick="limpiarBusqueda()">Limpiar</button>
-        <div id="errorMsg" class="error-message">Por favor, ingresa un número de identificación.</div>
+    <!-- Cabecera visible desde el inicio -->
+    <div class="report-header">
+        <div>Socializacion de Notas primer Corte - 2026</div>
+        <div>Herramientas Informáticas</div>
+        <div>Trabajo Social</div>
+        <div>Julio Ricardo Martínez Montezuma</div>
     </div>
 
-    <!-- Zona de Resultados (Diseño exacto de la imagen) -->
-    <div id="resultado-notas">
-        <div class="report-header">
-            <div>Socializacion de Notas primer Corte - 2026</div>
-            <div>Herramientas Informáticas</div>
-            <div>Trabajo Social</div>
-            <div>Julio Ricardo Martínez Montezuma</div>
-        </div>
+    <div class="search-section">
+        <h3>Consulta de Notas - Estudiantes</h3>
+        <input type="text" id="inputIdentificacion" class="search-input" placeholder="Ej: 1.002.965.325" onkeydown="verificarEnter(event)">
+        <button type="button" class="search-btn" onclick="buscarEstudiante()">Consultar</button>
+        <button type="button" class="clear-btn" onclick="limpiarBusqueda()">Limpiar</button>
+        <div id="errorMsg" class="error-message"></div>
+    </div>
 
+    <!-- Zona de Resultados de consulta -->
+    <div id="resultado-notas">
         <div class="grid-info">
             <div class="label">Identificación</div>
             <div class="value-cell" id="lbl-id"></div>
-
             <div class="label">Nombre</div>
             <div class="value-cell" id="lbl-nombre"></div>
-
             <div class="label">Programa:</div>
             <div class="value-cell" id="lbl-programa"></div>
         </div>
 
         <div class="grid-notas">
-            <!-- Encabezados -->
-            <div></div>
-            <div class="nota-cell header-cell">Nota</div>
-            <div class="nota-cell porcentaje-cell header-cell">Porcentaje</div>
+            <div class="nota-cell header-bg">Taller</div>
+            <div class="nota-cell header-bg">Nota</div>
+            <div class="nota-cell header-bg">%</div>
+            <div class="nota-cell header-bg">Acumulado</div>
 
-            <!-- C1S2 -->
-            <div class="label">Taller C1S2</div>
-            <div class="nota-cell" id="lbl-c1s2-v"></div>
-            <div class="nota-cell porcentaje-cell" id="lbl-c1s2-p"></div>
+            <div class="nota-cell text-left">Taller C1S2</div>
+            <div class="nota-cell text-center" id="lbl-c1s2-v"></div>
+            <div class="nota-cell text-center">22,5%</div>
+            <div class="nota-cell text-center porcentaje-cell" id="lbl-c1s2-p"></div>
 
-            <!-- C1S3 -->
-            <div class="label">Taller C1S3</div>
-            <div class="nota-cell" id="lbl-c1s3-v"></div>
-            <div class="nota-cell porcentaje-cell" id="lbl-c1s3-p"></div>
+            <div class="nota-cell text-left">Taller C1S3</div>
+            <div class="nota-cell text-center" id="lbl-c1s3-v"></div>
+            <div class="nota-cell text-center">22,5%</div>
+            <div class="nota-cell text-center porcentaje-cell" id="lbl-c1s3-p"></div>
 
-            <!-- C1S4 -->
-            <div class="label">Taller C1S4</div>
-            <div class="nota-cell" id="lbl-c1s4-v"></div>
-            <div class="nota-cell porcentaje-cell" id="lbl-c1s4-p"></div>
+            <div class="nota-cell text-left">Taller C1S4</div>
+            <div class="nota-cell text-center" id="lbl-c1s4-v"></div>
+            <div class="nota-cell text-center">22,5%</div>
+            <div class="nota-cell text-center porcentaje-cell" id="lbl-c1s4-p"></div>
 
-            <!-- C1S5 -->
-            <div class="label">Taller C1S5</div>
-            <div class="nota-cell" id="lbl-c1s5-v"></div>
-            <div class="nota-cell porcentaje-cell" id="lbl-c1s5-p"></div>
+            <div class="nota-cell text-left">Taller C1S5</div>
+            <div class="nota-cell text-center" id="lbl-c1s5-v"></div>
+            <div class="nota-cell text-center">22,5%</div>
+            <div class="nota-cell text-center porcentaje-cell" id="lbl-c1s5-p"></div>
 
-            <!-- Asistencia / Faltas -->
-            <div class="label">Asistencia</div>
-            <div class="nota-cell" id="lbl-asis-v"></div>
-            <div class="nota-cell porcentaje-cell" id="lbl-asis-p"></div>
+            <div class="nota-cell text-left">Faltas</div>
+            <div class="nota-cell text-center" id="lbl-asis-v"></div>
+            <div class="nota-cell text-center">10,0%</div>
+            <div class="nota-cell text-center porcentaje-cell" id="lbl-asis-p"></div>
         </div>
 
         <div class="grid-definitiva">
@@ -248,121 +248,131 @@
             <div class="definitiva-value" id="lbl-definitiva"></div>
         </div>
     </div>
-
 </div>
 
 <script>
-    /* BASE DE DATOS DE EJEMPLO */
-    const baseDatos = [
-        { identificacion: "1002965325", nombre: "ARARAT BRAVO GEORGE SEBASTIAN", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "2,5", porcentaje: "0,56" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "3,4" },
-        { identificacion: "1058548380", nombre: "CHOCUE GUTIERREZ CAROL DANIELA", programa: "TS", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "4,5", porcentaje: "1,01" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,0", porcentaje: "0,90" }, asistencia: { valor: "1", porcentaje: "0,40" } }, definitiva: "4,6" },
-        { identificacion: "1061818935", nombre: "ERAZO DIAZ YURY MARCELA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "3,5", porcentaje: "0,79" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "3,7" },
-        { identificacion: "1061726512", nombre: "FAJARDO PORTILLA DAVID FABIAN", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "2,5", porcentaje: "0,56" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "3,4" },
-        { identificacion: "1058547615", nombre: "FERNANDEZ GUEVARA JUAN MANUEL", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "4,9" },
-        { identificacion: "1061750013", nombre: "GAVIRIA MENESES DENI NATALIA", programa: "TS", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "1,0", porcentaje: "0,23" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "1,4" },
-        { identificacion: "1059238180", nombre: "MARTINEZ FERNANDEZ LINA MARIA", programa: "TS", notas: { c1s2: { valor: "2,5", porcentaje: "0,56" }, c1s3: { valor: "4,5", porcentaje: "1,01" }, c1s4: { valor: "4,6", porcentaje: "1,04" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "4,2" },
-        { identificacion: "1058546449", nombre: "MUNOZ SALAZAR TATIANA ALEJANDRA", programa: "TS", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "1,0", porcentaje: "0,23" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "2", porcentaje: "0,30" } }, definitiva: "1,2" },
-        { identificacion: "1033100569", nombre: "ORDOÑEZ OBANDO JUAN CAMILO", programa: "TS", notas: { c1s2: { valor: "0,0", porcentaje: "0,00" }, c1s3: { valor: "0,0", porcentaje: "0,00" }, c1s4: { valor: "0,0", porcentaje: "0,00" }, c1s5: { valor: "0,0", porcentaje: "0,00" }, asistencia: { valor: "2", porcentaje: "0,30" } }, definitiva: "0,3" },
-        { identificacion: "1061740848", nombre: "PARRA HORMIGA YINETH ALEJANDRA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "3,1" },
-        { identificacion: "1004233498", nombre: "ROMO ORDOÑEZ LEIDY TATIANA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,5", porcentaje: "1,01" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "4,8" },
-        { identificacion: "1058933854", nombre: "SANTIAGO HOYOS LAURA SOFIA", programa: "TS", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "2,5", porcentaje: "0,56" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0", porcentaje: "0,40" } }, definitiva: "3,4" },
-        { identificacion: "1060800386", nombre: "TOMBE VEGA NICOL DAYANA", programa: "TS", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "1", porcentaje: "0,40" } }, definitiva: "4,9" },
-        { identificacion: "1058933288", nombre: "TROCHEZ VELASCO MARIANA", programa: "TS", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "1,0", porcentaje: "0,23" }, c1s4: { valor: "4,6", porcentaje: "1,04" }, c1s5: { valor: "2,5", porcentaje: "0,56" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "2,5" },
-        { identificacion: "1061706472", nombre: "YANDE MACIAS JUANA VALENTINA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "3,5", porcentaje: "0,79" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "4,6" },
-        { identificacion: "1060877919", nombre: "ALEGRIA FERNANDEZ PAOLA ANDREA", programa: "TS-N", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "4,0", porcentaje: "0,90" }, asistencia: { valor: "3", porcentaje: "0,20" } }, definitiva: "2,7" },
-        { identificacion: "1061816259", nombre: "ASCUNTAR PUNI YOSELIN ELIANA", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "4,0" },
-        { identificacion: "1006507875", nombre: "CALDERON NEIRA KATERINE YULIETH", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,5", porcentaje: "1,01" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "4,8" },
-        { identificacion: "1061755349", nombre: "GURRUTE YARPAZ DIANA KATHERINE", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "4,5", porcentaje: "1,01" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "4,0" },
-        { identificacion: "1060237349", nombre: "MOMPOTES BOLAÑOS EDWIN ERMINSON", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,0", porcentaje: "0,90" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "4,7" },
-        { identificacion: "1061809981", nombre: "NARVAEZ CERON DIRLEY ZULEYMA", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "4,1" },
-        { identificacion: "1061703992", nombre: "RENGIFO SANCHEZ LEIDY PATRICIA", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "4,5", porcentaje: "1,01" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "4,0" },
-        { identificacion: "34555319", nombre: "VALLEJO LOPEZ LUZ DARI", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0", porcentaje: "0,50" } }, definitiva: "3,2" },
-        { identificacion: "1002967627", nombre: "VASQUEZ CALDAS ANGIE LISEHT", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "1", porcentaje: "0,40" } }, definitiva: "4,8" }
+    var baseDatos = [
+        { identificacion: "1002965325", nombre: "ARARAT BRAVO GEORGE SEBASTIAN", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "2,5", porcentaje: "0,56" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "3,4" },
+        { identificacion: "1058548380", nombre: "CHOCUE GUTIERREZ CAROL DANIELA", programa: "TS", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "4,5", porcentaje: "1,01" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,0", porcentaje: "0,90" }, asistencia: { valor: "1,0", porcentaje: "0,40" } }, definitiva: "4,6" },
+        { identificacion: "1061818935", nombre: "ERAZO DIAZ YURY MARCELA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "3,5", porcentaje: "0,79" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "3,7" },
+        { identificacion: "1061726512", nombre: "FAJARDO PORTILLA DAVID FABIAN", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "2,5", porcentaje: "0,56" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "3,4" },
+        { identificacion: "1058547615", nombre: "FERNANDEZ GUEVARA JUAN MANUEL", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,9" },
+        { identificacion: "1061750013", nombre: "GAVIRIA MENESES DENI NATALIA", programa: "TS", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "1,0", porcentaje: "0,23" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "1,4" },
+        { identificacion: "1059238180", nombre: "MARTINEZ FERNANDEZ LINA MARIA", programa: "TS", notas: { c1s2: { valor: "2,5", porcentaje: "0,56" }, c1s3: { valor: "4,5", porcentaje: "1,01" }, c1s4: { valor: "4,6", porcentaje: "1,04" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,2" },
+        { identificacion: "1058546449", nombre: "MUNOZ SALAZAR TATIANA ALEJANDRA", programa: "TS", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "1,0", porcentaje: "0,23" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "2,0", porcentaje: "0,30" } }, definitiva: "1,2" },
+        { identificacion: "1033100569", nombre: "ORDOÑEZ OBANDO JUAN CAMILO", programa: "TS", notas: { c1s2: { valor: "0,0", porcentaje: "0,00" }, c1s3: { valor: "0,0", porcentaje: "0,00" }, c1s4: { valor: "0,0", porcentaje: "0,00" }, c1s5: { valor: "0,0", porcentaje: "0,00" }, asistencia: { valor: "2,0", porcentaje: "0,30" } }, definitiva: "0,3" },
+        { identificacion: "1061740848", nombre: "PARRA HORMIGA YINETH ALEJANDRA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "3,1" },
+        { identificacion: "1004233498", nombre: "ROMO ORDOÑEZ LEIDY TATIANA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,5", porcentaje: "1,01" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,8" },
+        { identificacion: "1058933854", nombre: "SANTIAGO HOYOS LAURA SOFIA", programa: "TS", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "2,5", porcentaje: "0,56" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,40" } }, definitiva: "3,4" },
+        { identificacion: "1060800386", nombre: "TOMBE VEGA NICOL DAYANA", programa: "TS", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "1,0", porcentaje: "0,40" } }, definitiva: "4,9" },
+        { identificacion: "1058933288", nombre: "TROCHEZ VELASCO MARIANA", programa: "TS", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "1,0", porcentaje: "0,23" }, c1s4: { valor: "4,6", porcentaje: "1,04" }, c1s5: { valor: "2,5", porcentaje: "0,56" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "2,5" },
+        { identificacion: "1061706472", nombre: "YANDE MACIAS JUANA VALENTINA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "3,5", porcentaje: "0,79" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,6" },
+        { identificacion: "1060877919", nombre: "ALEGRIA FERNANDEZ PAOLA ANDREA", programa: "TS-N", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "4,0", porcentaje: "0,90" }, asistencia: { valor: "3,0", porcentaje: "0,20" } }, definitiva: "2,7" },
+        { identificacion: "1061816259", nombre: "ASCUNTAR PUNI YOSELIN ELIANA", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,0" },
+        { identificacion: "1006507875", nombre: "CALDERON NEIRA KATERINE YULIETH", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,5", porcentaje: "1,01" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,8" },
+        { identificacion: "1061755349", nombre: "GURRUTE YARPAZ DIANA KATHERINE", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "4,5", porcentaje: "1,01" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,0" },
+        { identificacion: "1060237349", nombre: "MOMPOTES BOLAÑOS EDWIN ERMINSON", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,0", porcentaje: "0,90" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,7" },
+        { identificacion: "1061809981", nombre: "NARVAEZ CERON DIRLEY ZULEYMA", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,1" },
+        { identificacion: "1061703992", nombre: "RENGIFO SANCHEZ LEIDY PATRICIA", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "4,5", porcentaje: "1,01" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,0" },
+        { identificacion: "34555319", nombre: "VALLEJO LOPEZ LUZ DARI", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "3,2" },
+        { identificacion: "1002967627", nombre: "VASQUEZ CALDAS ANGIE LISEHT", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "1,0", porcentaje: "0,40" } }, definitiva: "4,8" }
     ];
 
-    // Permite presionar la tecla 'Enter' para buscar
+    function formatCedula(cedulaStr) {
+        return cedulaStr.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function formatUnDecimal(valorStr) {
+        if (!valorStr) return "0,0";
+        var num = parseFloat(valorStr.replace(',', '.'));
+        if (isNaN(num)) return valorStr;
+        return num.toFixed(1).replace('.', ',');
+    }
+
     function verificarEnter(event) {
-        if (event.key === "Enter") {
+        if (event.key === "Enter" || event.keyCode === 13) {
+            event.preventDefault(); 
             buscarEstudiante();
         }
     }
 
-    // Función principal para buscar y mostrar los datos
+    function getNotaClass(valorStr) {
+        var num = parseFloat(valorStr.replace(',', '.'));
+        if (isNaN(num)) return "nota-cell text-center";
+        if (num < 3.0) return "nota-cell text-center text-perdido";
+        if (num > 4.5) return "nota-cell text-center text-excelente";
+        return "nota-cell text-center";
+    }
+
     function buscarEstudiante() {
-        const idBuscado = document.getElementById("inputIdentificacion").value.trim();
-        const divResultado = document.getElementById("resultado-notas");
-        const msgError = document.getElementById("errorMsg");
+        var inputRaw = document.getElementById("inputIdentificacion").value;
+        var idBuscado = inputRaw.replace(/\D/g, ""); 
+        var divResultado = document.getElementById("resultado-notas");
+        var msgError = document.getElementById("errorMsg");
+
+        divResultado.style.display = "none";
+        msgError.style.display = "none";
 
         if (idBuscado === "") {
-            divResultado.style.display = "none";
+            msgError.innerText = "Ingresa una identificación válida.";
             msgError.style.display = "block";
             return;
         }
 
-        // 1. Buscar al estudiante en el arreglo
-        let estudianteEncontrado = baseDatos.find(est => est.identificacion === idBuscado);
-
-        // 2. Si no existe en la base de datos, creamos uno dinámico con la cédula ingresada
-        // Esto permite que el buscador funcione con CUALQUIER número
-        if (!estudianteEncontrado) {
-            estudianteEncontrado = {
-                identificacion: idBuscado,
-                nombre: "ESTUDIANTE NO REGISTRADO (DATOS DE PRUEBA)",
-                programa: "TS",
-                notas: {
-                    c1s2: { valor: "0,0", porcentaje: "0,00" },
-                    c1s3: { valor: "0,0", porcentaje: "0,00" },
-                    c1s4: { valor: "0,0", porcentaje: "0,00" },
-                    c1s5: { valor: "0,0", porcentaje: "0,00" },
-                    asistencia: { valor: "0", porcentaje: "0,00" }
-                },
-                definitiva: "0,00"
-            };
+        var est = null;
+        for (var i = 0; i < baseDatos.length; i++) {
+            if (baseDatos[i].identificacion === idBuscado) {
+                est = baseDatos[i];
+                break;
+            }
         }
 
-        // Llenar los campos de información personal
-        document.getElementById("lbl-id").innerText = estudianteEncontrado.identificacion;
-        document.getElementById("lbl-nombre").innerText = estudianteEncontrado.nombre;
-        document.getElementById("lbl-programa").innerText = estudianteEncontrado.programa;
+        if (!est) {
+            msgError.innerText = "Estudiante no encontrado.";
+            msgError.style.display = "block";
+            return;
+        }
 
-        // Llenar C1S2
-        document.getElementById("lbl-c1s2-v").innerText = estudianteEncontrado.notas.c1s2.valor;
-        document.getElementById("lbl-c1s2-p").innerText = estudianteEncontrado.notas.c1s2.porcentaje;
+        document.getElementById("lbl-id").innerText = formatCedula(est.identificacion);
+        document.getElementById("lbl-nombre").innerText = est.nombre;
+        document.getElementById("lbl-programa").innerText = est.programa;
 
-        // Llenar C1S3
-        document.getElementById("lbl-c1s3-v").innerText = estudianteEncontrado.notas.c1s3.valor;
-        document.getElementById("lbl-c1s3-p").innerText = estudianteEncontrado.notas.c1s3.porcentaje;
+        var ids = ['c1s2', 'c1s3', 'c1s4', 'c1s5'];
+        for(var j=0; j < ids.length; j++) {
+            var key = ids[j];
+            var valStr = est.notas[key].valor;
+            var elem = document.getElementById("lbl-" + key + "-v");
+            elem.innerText = valStr;
+            elem.className = getNotaClass(valStr);
+            document.getElementById("lbl-" + key + "-p").innerText = formatUnDecimal(est.notas[key].porcentaje);
+        }
 
-        // Llenar C1S4
-        document.getElementById("lbl-c1s4-v").innerText = estudianteEncontrado.notas.c1s4.valor;
-        document.getElementById("lbl-c1s4-p").innerText = estudianteEncontrado.notas.c1s4.porcentaje;
+        var faltasRaw = est.notas.asistencia.valor;
+        document.getElementById("lbl-asis-v").innerText = parseInt(faltasRaw) || 0;
+        document.getElementById("lbl-asis-p").innerText = formatUnDecimal(est.notas.asistencia.porcentaje);
+        
+        var defStr = est.definitiva;
+        var defElem = document.getElementById("lbl-definitiva");
+        defElem.innerText = defStr;
+        
+        var defNum = parseFloat(defStr.replace(',', '.'));
+        if (defNum < 3.0) {
+            defElem.className = "definitiva-value text-perdido";
+        } else if (defNum > 4.5) {
+            defElem.className = "definitiva-value text-excelente";
+        } else {
+            defElem.className = "definitiva-value";
+        }
 
-        // Llenar C1S5
-        document.getElementById("lbl-c1s5-v").innerText = estudianteEncontrado.notas.c1s5.valor;
-        document.getElementById("lbl-c1s5-p").innerText = estudianteEncontrado.notas.c1s5.porcentaje;
-
-        // Llenar Asistencia
-        document.getElementById("lbl-asis-v").innerText = estudianteEncontrado.notas.asistencia.valor;
-        document.getElementById("lbl-asis-p").innerText = estudianteEncontrado.notas.asistencia.porcentaje;
-
-        // Llenar Definitiva
-        document.getElementById("lbl-definitiva").innerText = estudianteEncontrado.definitiva;
-
-        // Ocultar error y mostrar resultados
-        msgError.style.display = "none";
         divResultado.style.display = "block";
     }
 
-    // Función para limpiar la búsqueda y consultar otro estudiante fácilmente
     function limpiarBusqueda() {
-        const input = document.getElementById("inputIdentificacion");
-        const divResultado = document.getElementById("resultado-notas");
-        const msgError = document.getElementById("errorMsg");
-
+        var input = document.getElementById("inputIdentificacion");
         input.value = "";
-        divResultado.style.display = "none";
-        msgError.style.display = "none";
-        input.focus(); // Coloca el cursor automáticamente en el buscador de nuevo
+        document.getElementById("resultado-notas").style.display = "none";
+        document.getElementById("errorMsg").style.display = "none";
+        input.focus(); 
     }
 </script>
 
