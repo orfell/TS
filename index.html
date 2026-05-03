@@ -38,6 +38,24 @@
             padding-bottom: 15px;
         }
 
+        /* Estilos para el logo */
+        .logo-img {
+            max-width: 250px;
+            height: auto;
+            margin-bottom: 15px;
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Separador del logo */
+        .logo-separator {
+            border: none;
+            border-top: 1px solid #d1d5db; /* Línea gris delgada */
+            margin: 0 auto 20px auto; /* Centrada con espacio inferior */
+            width: 85%; /* Ocupa el 85% del ancho para un mejor diseño */
+        }
+
         /* Buscador */
         .search-section {
             background-color: #eef2f5;
@@ -87,27 +105,27 @@
             display: none;
         }
 
-        /* CONFIGURACIÓN DE 390px */
+        /* CONFIGURACIÓN FLUIDA Y RESPONSIVA */
         .grid-info {
             display: grid;
-            grid-template-columns: 130px 260px;
+            grid-template-columns: 130px 1fr;
             margin: 0 auto 25px auto;
-            width: 390px;
+            width: 100%;
         }
 
         .grid-notas {
             display: grid;
-            grid-template-columns: 130px 80px 80px 100px;
+            grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
             margin: 0 auto 25px auto;
-            width: 390px;
+            width: 100%;
         }
 
         .grid-definitiva {
             display: grid;
-            grid-template-columns: 290px 100px;
+            grid-template-columns: 1fr 100px;
             align-items: center;
             margin: 20px auto 0 auto;
-            width: 390px;
+            width: 100%;
         }
 
         .label {
@@ -122,6 +140,7 @@
             padding: 6px 8px;
             margin-top: -1px;
             font-size: 16px;
+            word-break: break-word; /* Evita desbordes de nombres largos */
         }
 
         .nota-cell {
@@ -130,6 +149,7 @@
             margin-top: -1px;
             margin-left: -1px;
             font-size: 16px;
+            word-break: break-word;
         }
 
         .text-center { text-align: center; }
@@ -168,16 +188,29 @@
             display: none;
         }
 
+        /* MEDIA QUERIES PARA DISPOSITIVOS MÓVILES */
         @media (max-width: 500px) {
             body { padding: 10px; }
             .container { padding: 15px; }
-            .grid-info, .grid-notas, .grid-definitiva { width: 100%; }
-            .grid-info { grid-template-columns: 90px 1fr; }
-            .grid-notas { grid-template-columns: 90px 1fr 1fr 1.2fr; }
-            .grid-definitiva { grid-template-columns: 1fr 90px; }
-            .label, .value-cell, .nota-cell, .definitiva-value { font-size: 13px; }
-            .search-input { width: 100%; margin-bottom: 10px; }
-            .search-btn, .clear-btn { margin-left: 0; width: 100%; margin-bottom: 10px; }
+            
+            /* Ajuste de columnas para pantallas pequeñas */
+            .grid-info { grid-template-columns: 100px 1fr; }
+            .grid-notas { grid-template-columns: 1.2fr 1fr 1fr 1.2fr; }
+            .grid-definitiva { grid-template-columns: 1fr 80px; }
+            
+            /* Reducción de fuentes y márgenes internos */
+            .label { font-size: 13px; }
+            .value-cell, .nota-cell, .definitiva-value { font-size: 12px; padding: 5px 3px; }
+            
+            /* Buscador en columna */
+            .search-section { 
+                display: flex; 
+                flex-direction: column; 
+                gap: 10px; 
+                align-items: center; 
+            }
+            .search-input { width: 100%; max-width: 100%; margin: 0; }
+            .search-btn, .clear-btn { width: 100%; margin: 0; }
         }
     </style>
 </head>
@@ -186,7 +219,9 @@
 <div class="container">
     <!-- Cabecera visible desde el inicio -->
     <div class="report-header">
-        <div>Socializacion de Notas primer Corte - 2026</div>
+        <img src="https://raw.githubusercontent.com/orfell/Logos/main/LogoUnicomfacauca.png" alt="Logo Unicomfacauca" class="logo-img">
+        <hr class="logo-separator">
+        <div>Socialización de Notas Segundo Corte - Periodo 1 - 2026</div>
         <div>Herramientas Informáticas</div>
         <div>Trabajo Social</div>
         <div>Julio Ricardo Martínez Montezuma</div>
@@ -217,25 +252,20 @@
             <div class="nota-cell header-bg">%</div>
             <div class="nota-cell header-bg">Acumulado</div>
 
-            <div class="nota-cell text-left">Taller C1S2</div>
-            <div class="nota-cell text-center" id="lbl-c1s2-v"></div>
-            <div class="nota-cell text-center">22,5%</div>
-            <div class="nota-cell text-center porcentaje-cell" id="lbl-c1s2-p"></div>
+            <div class="nota-cell text-left">Taller C2S1</div>
+            <div class="nota-cell text-center" id="lbl-c2s1-v"></div>
+            <div class="nota-cell text-center">30,0%</div>
+            <div class="nota-cell text-center porcentaje-cell" id="lbl-c2s1-p"></div>
 
-            <div class="nota-cell text-left">Taller C1S3</div>
-            <div class="nota-cell text-center" id="lbl-c1s3-v"></div>
-            <div class="nota-cell text-center">22,5%</div>
-            <div class="nota-cell text-center porcentaje-cell" id="lbl-c1s3-p"></div>
+            <div class="nota-cell text-left">Taller C2S2</div>
+            <div class="nota-cell text-center" id="lbl-c2s2-v"></div>
+            <div class="nota-cell text-center">30,0%</div>
+            <div class="nota-cell text-center porcentaje-cell" id="lbl-c2s2-p"></div>
 
-            <div class="nota-cell text-left">Taller C1S4</div>
-            <div class="nota-cell text-center" id="lbl-c1s4-v"></div>
-            <div class="nota-cell text-center">22,5%</div>
-            <div class="nota-cell text-center porcentaje-cell" id="lbl-c1s4-p"></div>
-
-            <div class="nota-cell text-left">Taller C1S5</div>
-            <div class="nota-cell text-center" id="lbl-c1s5-v"></div>
-            <div class="nota-cell text-center">22,5%</div>
-            <div class="nota-cell text-center porcentaje-cell" id="lbl-c1s5-p"></div>
+            <div class="nota-cell text-left">Taller C2S4</div>
+            <div class="nota-cell text-center" id="lbl-c2s4-v"></div>
+            <div class="nota-cell text-center">30,0%</div>
+            <div class="nota-cell text-center porcentaje-cell" id="lbl-c2s4-p"></div>
 
             <div class="nota-cell text-left">Faltas</div>
             <div class="nota-cell text-center" id="lbl-asis-v"></div>
@@ -244,7 +274,7 @@
         </div>
 
         <div class="grid-definitiva">
-            <div class="label">Definitiva Corte I</div>
+            <div class="label">Definitiva Corte II</div>
             <div class="definitiva-value" id="lbl-definitiva"></div>
         </div>
     </div>
@@ -252,40 +282,46 @@
 
 <script>
     var baseDatos = [
-        { identificacion: "1002965325", nombre: "ARARAT BRAVO GEORGE SEBASTIAN", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "2,5", porcentaje: "0,56" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "3,4" },
-        { identificacion: "1058548380", nombre: "CHOCUE GUTIERREZ CAROL DANIELA", programa: "TS", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "4,5", porcentaje: "1,01" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,0", porcentaje: "0,90" }, asistencia: { valor: "1,0", porcentaje: "0,40" } }, definitiva: "4,6" },
-        { identificacion: "1061818935", nombre: "ERAZO DIAZ YURY MARCELA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "3,5", porcentaje: "0,79" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,6" },
-        { identificacion: "1061726512", nombre: "FAJARDO PORTILLA DAVID FABIAN", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "2,5", porcentaje: "0,56" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "3,4" },
-        { identificacion: "1058547615", nombre: "FERNANDEZ GUEVARA JUAN MANUEL", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,9" },
-        { identificacion: "1061750013", nombre: "GAVIRIA MENESES DENI NATALIA", programa: "TS", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "1,0", porcentaje: "0,23" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "1,4" },
-        { identificacion: "1059238180", nombre: "MARTINEZ FERNANDEZ LINA MARIA", programa: "TS", notas: { c1s2: { valor: "2,5", porcentaje: "0,56" }, c1s3: { valor: "4,5", porcentaje: "1,01" }, c1s4: { valor: "4,6", porcentaje: "1,04" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,2" },
-        { identificacion: "1058546449", nombre: "MUNOZ SALAZAR TATIANA ALEJANDRA", programa: "TS", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "1,0", porcentaje: "0,23" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "2,0", porcentaje: "0,30" } }, definitiva: "1,2" },
-        { identificacion: "1033100569", nombre: "ORDOÑEZ OBANDO JUAN CAMILO", programa: "TS", notas: { c1s2: { valor: "0,0", porcentaje: "0,00" }, c1s3: { valor: "0,0", porcentaje: "0,00" }, c1s4: { valor: "0,0", porcentaje: "0,00" }, c1s5: { valor: "0,0", porcentaje: "0,00" }, asistencia: { valor: "2,0", porcentaje: "0,30" } }, definitiva: "0,3" },
-        { identificacion: "1061740848", nombre: "PARRA HORMIGA YINETH ALEJANDRA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "3,1" },
-        { identificacion: "1004233498", nombre: "ROMO ORDOÑEZ LEIDY TATIANA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,5", porcentaje: "1,01" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,8" },
-        { identificacion: "1058933854", nombre: "SANTIAGO HOYOS LAURA SOFIA", programa: "TS", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "2,5", porcentaje: "0,56" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,40" } }, definitiva: "3,4" },
-        { identificacion: "1060800386", nombre: "TOMBE VEGA NICOL DAYANA", programa: "TS", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "1,0", porcentaje: "0,40" } }, definitiva: "4,9" },
-        { identificacion: "1058933288", nombre: "TROCHEZ VELASCO MARIANA", programa: "TS", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "1,0", porcentaje: "0,23" }, c1s4: { valor: "4,6", porcentaje: "1,04" }, c1s5: { valor: "2,5", porcentaje: "0,56" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "2,5" },
-        { identificacion: "1061706472", nombre: "YANDE MACIAS JUANA VALENTINA", programa: "TS", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "3,5", porcentaje: "0,79" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,6" },
-        { identificacion: "1060877919", nombre: "ALEGRIA FERNANDEZ PAOLA ANDREA", programa: "TS-N", notas: { c1s2: { valor: "1,0", porcentaje: "0,23" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "4,0", porcentaje: "0,90" }, asistencia: { valor: "3,0", porcentaje: "0,20" } }, definitiva: "2,7" },
-        { identificacion: "1061816259", nombre: "ASCUNTAR PUNI YOSELIN ELIANA", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,0" },
-        { identificacion: "1006507875", nombre: "CALDERON NEIRA KATERINE YULIETH", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,5", porcentaje: "1,01" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,8" },
-        { identificacion: "1061755349", nombre: "GURRUTE YARPAZ DIANA KATHERINE", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "4,5", porcentaje: "1,01" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,0" },
-        { identificacion: "1060237349", nombre: "MOMPOTES BOLAÑOS EDWIN ERMINSON", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "4,0", porcentaje: "0,90" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,7" },
-        { identificacion: "1061809981", nombre: "NARVAEZ CERON DIRLEY ZULEYMA", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,1" },
-        { identificacion: "1061703992", nombre: "RENGIFO SANCHEZ LEIDY PATRICIA", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "4,5", porcentaje: "1,01" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "4,0" },
-        { identificacion: "34555319", nombre: "VALLEJO LOPEZ LUZ DARI", programa: "TS-N", notas: { c1s2: { valor: "5,0", porcentaje: "1,13" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "1,0", porcentaje: "0,23" }, c1s5: { valor: "1,0", porcentaje: "0,23" }, asistencia: { valor: "0,0", porcentaje: "0,50" } }, definitiva: "3,2" },
-        { identificacion: "1002967627", nombre: "VASQUEZ CALDAS ANGIE LISEHT", programa: "TS-N", notas: { c1s2: { valor: "4,5", porcentaje: "1,01" }, c1s3: { valor: "5,0", porcentaje: "1,13" }, c1s4: { valor: "5,0", porcentaje: "1,13" }, c1s5: { valor: "5,0", porcentaje: "1,13" }, asistencia: { valor: "1,0", porcentaje: "0,40" } }, definitiva: "4,8" }
+        { identificacion: "1002965325", nombre: "ARARAT BRAVO GEORGE SEBASTIAN", programa: "TS", notas: { c2s1: { valor: "5,0", porcentaje: "1,50" }, c2s2: { valor: "2,0", porcentaje: "0,60" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "4,1" },
+        { identificacion: "1058548380", nombre: "CHOCUE GUTIERREZ CAROL DANIELA", programa: "TS", notas: { c2s1: { valor: "2,7", porcentaje: "0,81" }, c2s2: { valor: "3,5", porcentaje: "1,05" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "3,9" },
+        { identificacion: "1061818935", nombre: "ERAZO DIAZ YURY MARCELA", programa: "TS", notas: { c2s1: { valor: "4,0", porcentaje: "1,20" }, c2s2: { valor: "4,5", porcentaje: "1,35" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "4,6" },
+        { identificacion: "1061726512", nombre: "FAJARDO PORTILLA DAVID FABIAN", programa: "TS", notas: { c2s1: { valor: "1,0", porcentaje: "0,30" }, c2s2: { valor: "1,0", porcentaje: "0,30" }, c2s4: { valor: "1,0", porcentaje: "0,30" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "1,4" },
+        { identificacion: "1058547615", nombre: "FERNANDEZ GUEVARA JUAN MANUEL", programa: "TS", notas: { c2s1: { valor: "5,0", porcentaje: "1,50" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "5,0" },
+        { identificacion: "1061750013", nombre: "GAVIRIA MENESES DENI NATALIA", programa: "TS", notas: { c2s1: { valor: "2,7", porcentaje: "0,81" }, c2s2: { valor: "1,0", porcentaje: "0,30" }, c2s4: { valor: "1,0", porcentaje: "0,30" }, asistencia: { valor: "2", porcentaje: "0,3" } }, definitiva: "1,7" },
+        { identificacion: "1059238180", nombre: "MARTINEZ FERNANDEZ LINA MARIA", programa: "TS", notas: { c2s1: { valor: "2,0", porcentaje: "0,60" }, c2s2: { valor: "4,0", porcentaje: "1,20" }, c2s4: { valor: "1,0", porcentaje: "0,30" }, asistencia: { valor: "1", porcentaje: "0,4" } }, definitiva: "2,5" },
+        { identificacion: "1058546449", nombre: "MUNOZ SALAZAR TATIANA ALEJANDRA", programa: "TS", notas: { c2s1: { valor: "1,0", porcentaje: "0,30" }, c2s2: { valor: "1,0", porcentaje: "0,30" }, c2s4: { valor: "1,0", porcentaje: "0,30" }, asistencia: { valor: "2", porcentaje: "0,3" } }, definitiva: "1,2" },
+        { identificacion: "1033100569", nombre: "ORDOÑEZ OBANDO JUAN CAMILO", programa: "TS", notas: { c2s1: { valor: "1,0", porcentaje: "0,30" }, c2s2: { valor: "1,0", porcentaje: "0,30" }, c2s4: { valor: "1,0", porcentaje: "0,30" }, asistencia: { valor: "2", porcentaje: "0,0" } }, definitiva: "0,9" },
+        { identificacion: "1061740848", nombre: "PARRA HORMIGA YINETH ALEJANDRA", programa: "TS", notas: { c2s1: { valor: "1,0", porcentaje: "0,30" }, c2s2: { valor: "1,0", porcentaje: "0,30" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "2,6" },
+        { identificacion: "1004233498", nombre: "ROMO ORDOÑEZ LEIDY TATIANA", programa: "TS", notas: { c2s1: { valor: "5,0", porcentaje: "1,50" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "5,0" },
+        { identificacion: "1058933854", nombre: "SANTIAGO HOYOS LAURA SOFIA", programa: "TS", notas: { c2s1: { valor: "1,0", porcentaje: "0,30" }, c2s2: { valor: "1,0", porcentaje: "0,30" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "2,6" },
+        { identificacion: "1060800386", nombre: "TOMBE VEGA NICOL DAYANA", programa: "TS", notas: { c2s1: { valor: "5,0", porcentaje: "1,50" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "5,0" },
+        { identificacion: "1058933288", nombre: "TROCHEZ VELASCO MARIANA ", programa: "TS", notas: { c2s1: { valor: "1,0", porcentaje: "0,30" }, c2s2: { valor: "4,0", porcentaje: "1,20" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "3,5" },
+        { identificacion: "1061706472", nombre: "YANDE MACIAS JUANA VALENTINA", programa: "TS", notas: { c2s1: { valor: "2,7", porcentaje: "0,81" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "4,3" },
+        { identificacion: "1060877919", nombre: "ALEGRÍA FERNÁNDEZ PAOLA ANDREA", programa: "TS-N", notas: { c2s1: { valor: "4,5", porcentaje: "1,35" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "3", porcentaje: "0,5" } }, definitiva: "4,9" },
+        { identificacion: "1061816259", nombre: "ASCUNTAR PUNI YOSELIN ELIANA", programa: "TS-N", notas: { c2s1: { valor: "5,0", porcentaje: "1,50" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "5,0" },
+        { identificacion: "1006507875", nombre: "CALDERON NEIRA KATERINE YULIETH", programa: "TS-N", notas: { c2s1: { valor: "5,0", porcentaje: "1,50" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "1", porcentaje: "0,4" } }, definitiva: "4,9" },
+        { identificacion: "1061755349", nombre: "GURRUTE YARPAZ DIANA KATHERINE", programa: "TS-N", notas: { c2s1: { valor: "1,0", porcentaje: "0,30" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "2", porcentaje: "0,3" } }, definitiva: "3,6" },
+        { identificacion: "1060237349", nombre: "MOMPOTES BOLAÑOS EDWIN ERMINSON", programa: "TS-N", notas: { c2s1: { valor: "5,0", porcentaje: "1,50" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "5,0" },
+        { identificacion: "1061809981", nombre: "NARVAEZ CERON DIRLEY ZULEYMA", programa: "TS-N", notas: { c2s1: { valor: "5,0", porcentaje: "1,50" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "1", porcentaje: "0,4" } }, definitiva: "4,9" },
+        { identificacion: "1061703992", nombre: "RENGIFO SANCHEZ LEIDY PATRICIA", programa: "TS-N", notas: { c2s1: { valor: "5,0", porcentaje: "1,50" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "5,0" },
+        { identificacion: "34555319", nombre: "VALLEJO LOPEZ LUZ DARI", programa: "TS-N", notas: { c2s1: { valor: "5,0", porcentaje: "1,50" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "2", porcentaje: "0,3" } }, definitiva: "4,8" },
+        { identificacion: "1002967627", nombre: "VASQUEZ CALDAS ANGIE LISEHT", programa: "TS-N", notas: { c2s1: { valor: "5,0", porcentaje: "1,50" }, c2s2: { valor: "5,0", porcentaje: "1,50" }, c2s4: { valor: "5,0", porcentaje: "1,50" }, asistencia: { valor: "0", porcentaje: "0,5" } }, definitiva: "5,0" }
     ];
 
     function formatCedula(cedulaStr) {
         return cedulaStr.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     }
 
+    // Mantenemos la lógica de formato para preservar los decimales como venían o aproximarlos según sea necesario
     function formatUnDecimal(valorStr) {
         if (!valorStr) return "0,0";
         var num = parseFloat(valorStr.replace(',', '.'));
         if (isNaN(num)) return valorStr;
+        // Para respetar los dos decimales que vienen de origen en los acumulados como 0,81 o 1,05
+        var decLength = (valorStr.split(',')[1] || "").length;
+        if(decLength > 1) {
+            return num.toFixed(2).replace('.', ',');
+        }
         return num.toFixed(1).replace('.', ',');
     }
 
@@ -337,7 +373,8 @@
         document.getElementById("lbl-nombre").innerText = est.nombre;
         document.getElementById("lbl-programa").innerText = est.programa;
 
-        var ids = ['c1s2', 'c1s3', 'c1s4', 'c1s5'];
+        // Ahora solo iteramos sobre los 3 talleres que quedaron
+        var ids = ['c2s1', 'c2s2', 'c2s4'];
         for(var j=0; j < ids.length; j++) {
             var key = ids[j];
             var valStr = est.notas[key].valor;
